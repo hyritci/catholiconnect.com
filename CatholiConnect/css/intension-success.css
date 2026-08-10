@@ -1,0 +1,51 @@
+/* ==========================================================
+   intension-success.css — Confirmation d'envoi de la demande
+   ========================================================== */
+
+.success-body {
+  background-color: var(--color-bg-teal);
+}
+
+.success-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 36px;
+}
+
+.success-icon {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--color-btn-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 34px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.success-title {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.success-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  margin-bottom: 46px;
+}
+
+.btn-home {
+  width: 100%;
+}

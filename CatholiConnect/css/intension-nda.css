@@ -1,0 +1,259 @@
+/* ==========================================================
+   intension-details.css — Étape 2 de "Intension" :
+   formulaire de la demande (texte, date, heure, paiement)
+   ========================================================== */
+
+.details-body {
+  background-color: #ffffff;
+}
+
+.details-container {
+  padding: 0 28px 40px;
+  max-width: 520px;
+}
+
+/* ---------- En-tête (identique à l'étape 1) ---------- */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: env(safe-area-inset-top, 24px) 0 30px;
+}
+
+.btn-back {
+  background: none;
+  color: var(--color-bg-teal);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-back:active {
+  opacity: 0.6;
+}
+
+.page-title {
+  flex: 1;
+  text-align: center;
+  color: var(--color-bg-teal);
+  font-size: 1.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-right: 40px;
+}
+
+/* ---------- Carte de la paroisse sélectionnée ---------- */
+.card-parish-selected {
+  background-color: #d3f2e5;
+  border-radius: 24px;
+  padding: 24px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.parish-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  margin-bottom: 6px;
+}
+
+.parish-location {
+  font-size: 1.05rem;
+  color: #8a8a8a;
+}
+
+.btn-camera {
+  background-color: #1a1a1a;
+  color: var(--color-text-dark);
+  width: 56px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-camera:active {
+  opacity: 0.75;
+}
+
+/* ---------- Champs en gris (style "wireframe") ---------- */
+.textarea-demande,
+.input-grey {
+  width: 100%;
+  background-color: #dcdcdc;
+  border: 1.5px solid #8f8f8f;
+  border-radius: 4px;
+  padding: 16px 18px;
+  font-size: 1.15rem;
+  font-family: inherit;
+  color: var(--color-text-dark);
+  resize: none;
+}
+
+.textarea-demande::placeholder,
+.input-grey::placeholder {
+  color: #7d7d7d;
+}
+
+.textarea-demande {
+  margin-bottom: 14px;
+}
+
+/* ---------- Listes de sélection Jour / Heure ---------- */
+.select-grey {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555555' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  padding-right: 42px;
+}
+
+.select-grey:disabled {
+  opacity: 0.55;
+}
+
+/* ---------- Conteneur de champ + message d'erreur ---------- */
+.field-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field-error {
+  display: none;
+  color: #e0403f;
+  font-size: 0.95rem;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+/* Quand un champ est marqué invalide : bordure rouge + message visible */
+.field-wrapper.has-error .textarea-demande,
+.field-wrapper.has-error .input-grey {
+  border-color: #e0403f;
+  background-color: #f7dede;
+}
+
+.field-wrapper.has-error .field-error {
+  display: block;
+}
+
+/* ---------- Lien "Voir exemples" ---------- */
+.link-exemples {
+  background: none;
+  color: #1a1a1a;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 6px 0 24px;
+  align-self: flex-start;
+}
+
+.link-exemples:active {
+  opacity: 0.6;
+}
+
+/* ---------- Ligne Jour / Heure ---------- */
+.row-jour-heure {
+  display: flex;
+  gap: 22px;
+  margin-bottom: 26px;
+}
+
+.row-jour-heure .input-grey {
+  flex: 1;
+}
+
+/* ---------- Numéro à débiter ---------- */
+.input-numero {
+  margin-bottom: 30px;
+}
+
+ 
+/* ---------- Bouton Tout effacer ---------- */
+.btn-clear {
+  width: 100%;
+  background: none;
+  color: #b03030;
+  border: 1.5px solid #b03030;
+  border-radius: 30px;
+  padding: 14px 20px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 20px;
+  transition: background-color 0.2s ease, transform 0.12s ease;
+}
+ 
+.btn-clear:active {
+  background-color: #f7dede;
+  transform: scale(0.98);
+}
+
+/* ---------- Bouton Suivant ---------- */
+.btn-suivant {
+  font-size: 1.7rem;
+  padding: 26px 24px;
+  text-align: left;
+  padding-left: 32px;
+  margin-top: 10px;
+}
+
+/* ---------- Popup limite de mots ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  z-index: 1000;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-box {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 32px 26px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal-text {
+  font-size: 1.2rem;
+  color: var(--color-text-dark);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.modal-btn-ok {
+  background-color: var(--color-btn-teal);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 14px 40px;
+  border-radius: 30px;
+  transition: background-color 0.2s ease, transform 0.12s ease;
+}
+
+.modal-btn-ok:active {
+  transform: scale(0.96);
+  background-color: var(--color-btn-teal-hover);
+}

@@ -1,0 +1,173 @@
+/* ==========================================================
+   donation-construction-detail.css — Détail d'un projet
+   de construction : photo fixe + contact + localisation
+   ========================================================== */
+
+.detail-body {
+  background-color: #d9d9d9;
+}
+
+/* ---------- Bandeau teal (en-tête + titre catégorie) ---------- */
+.detail-top {
+  background-color: var(--color-bg-teal);
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: env(safe-area-inset-top, 24px) 28px 20px;
+}
+
+.btn-back {
+  background: none;
+  color: #ffffff;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-back:active {
+  opacity: 0.6;
+}
+
+.page-title {
+  flex: 1;
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-right: 42px;
+}
+
+.category-title {
+  text-align: center;
+  color: #ffffff;
+  font-size: 2.3rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 30px 20px 26px;
+  border-bottom: 3px solid #ffffff;
+  margin: 0 0 18px;
+}
+
+/* ---------- Carte détail ---------- */
+.detail-card {
+  background-color: #ffffff;
+  margin: 0 14px 30px;
+  border-radius: 4px;
+  padding: 34px 26px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Photo (fixe, définie dans le code source) ---------- */
+.detail-photo {
+  width: 190px;
+  height: 190px;
+  border-radius: 26px;
+  background-color: var(--color-bg-teal);
+  overflow: hidden;
+  margin-bottom: 26px;
+}
+
+.detail-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Titre + description ---------- */
+.detail-title {
+  color: var(--color-bg-teal);
+  font-size: 1.45rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 22px;
+}
+
+.divider-line {
+  width: 100%;
+  border: none;
+  border-top: 1.5px solid #6b6b6b;
+  margin-bottom: 26px;
+}
+
+.detail-description {
+  font-size: 1.08rem;
+  color: #6b6b6b;
+  line-height: 1.55;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.detail-description--intro {
+  margin-bottom: 24px;
+}
+
+/* ---------- Boutons de contact ---------- */
+.contact-buttons {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.btn-contact {
+  width: 76px;
+  height: 66px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  border: 1.5px solid #6b6b6b;
+  transition: transform 0.12s ease, opacity 0.2s ease;
+}
+
+.btn-contact:active {
+  transform: scale(0.95);
+}
+
+.btn-whatsapp {
+  background-color: #5dc85d;
+}
+
+.btn-phone {
+  background-color: #4bb8e8;
+}
+
+/* ---------- Séparateur pointillé ---------- */
+.divider-dashed {
+  width: 100%;
+  border: none;
+  border-top: 3px dashed #4a4a4a;
+  margin-bottom: 34px;
+}
+
+/* ---------- Bouton localisation ---------- */
+.btn-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  background-color: var(--color-bg-teal);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 20px 20px;
+  border-radius: 40px;
+  transition: background-color 0.2s ease, transform 0.12s ease;
+}
+
+.btn-location:active {
+  transform: scale(0.98);
+  background-color: var(--color-bg-teal-dark);
+}

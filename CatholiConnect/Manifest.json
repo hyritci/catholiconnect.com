@@ -1,0 +1,19 @@
+{
+  "name": "CatholiConnect",
+  "short_name": "CatholiConnect",
+  "description": "Application catholique : intentions de prière et dons.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#7fc9bb",
+  "theme_color": "#7fc9bb",
+  "icons": [
+    {
+      "src": "assets/CatholiConnect.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

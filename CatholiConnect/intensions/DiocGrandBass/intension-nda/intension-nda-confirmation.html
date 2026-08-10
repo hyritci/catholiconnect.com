@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CatholiConnect - Résumé et paiement</title>
+
+  <link rel="manifest" href="../../../Manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="apple-touch-icon" type="png" href="../../../assets/CatholiConnect.png" />
+
+  <link rel="stylesheet" href="../../../css/style.css" />
+  <link rel="stylesheet" href="../../../css/intension-nda-confirmation.css" />
+</head>
+<body class="confirm-body">
+
+  <main class="app-container confirm-container">
+
+    <!-- En-tête -->
+    <header class="page-header">
+      <button class="btn-back" id="btnBack" type="button" aria-label="Retour">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <h1 class="page-title">INTENSION</h1>
+    </header>
+
+    <!-- Bandeau titre de l'étape -->
+    <div class="step-banner">RESUME ET PAYEMENT</div>
+
+    <!-- Intension -->
+    <section class="field-block">
+      <label class="field-label">INTENSION</label>
+      <div class="field-box field-box--tall" id="fieldIntension">LE TEXTE SERA INSCRIT ICI</div>
+    </section>
+
+    <!-- Jour - Heure -->
+    <section class="field-block">
+      <label class="field-label">JOUR - HEURE</label>
+      <div class="field-box" id="fieldJourHeure">
+        MESSE DU <span class="highlight" id="fieldJour">LUNDI</span> a <span class="highlight" id="fieldHeure">06H</span>
+      </div>
+    </section>
+
+    <!-- Numéro de transaction -->
+    <section class="field-block">
+      <label class="field-label">NUMERO DE TRANSACTION ET A CONTACTER</label>
+      <div class="field-box" id="fieldNumero">07 07 07 01 07</div>
+    </section>
+
+    <!-- Case à cocher de confirmation -->
+    <label class="check-row" for="checkLu">
+      <input type="checkbox" id="checkLu" class="checkbox-input" />
+      <span class="checkbox-box"></span>
+      <span class="check-label">j'ai bien tout lu</span>
+    </label>
+
+    <!-- Bouton de paiement (unique, via CinetPay) -->
+    <button class="btn-main btn-payement" id="btnPayement" type="button" disabled>
+      PAIEMENT
+    </button>
+
+  </main>
+  
+  
+   <!-- Popup d'avertissement : paiement obligatoire -->
+  <div class="modal-overlay" id="paymentNoticeModal" hidden>
+    <div class="modal-box">
+      <p class="modal-text">
+        Votre demande de messe ne sera pas prise en compte si le payement n'est pas effectué
+      </p>
+      <button class="modal-btn-ok" id="btnNoticeOk" type="button">OK</button>
+    </div>
+  </div>
+  
+    <!-- Firebase (SDK "compat", simple à utiliser sans build tool) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+  <script src="../../../js/firebase-config.js"></script>
+
+  <script src="../../../js/intension-nda-confirmation.js"></script>
+
+  
+  </body>
+</html>
