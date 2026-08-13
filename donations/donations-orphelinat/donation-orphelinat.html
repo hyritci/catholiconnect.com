@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CatholiConnect - Donation Orphelinats</title>
+
+  <link rel="manifest" href="../../Manifest.json" />
+  <meta name="theme-color" content="#7fc9bb" />
+  <link rel="apple-touch-icon" href="../../assets/CatholiConnect.png" />
+
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/donation-orphelinat.css" />
+</head>
+<body class="donation-body">
+
+  <!-- Bandeau teal : en-tête + onglets -->
+  <div class="donation-top">
+    <header class="page-header">
+      <button class="btn-back" id="btnBack" type="button" aria-label="Retour">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <h1 class="page-title">DONATION</h1>
+    </header>
+
+    <nav class="tabs">
+      <a class="tab-btn" href="../donations-construction/donation-construction.html">CONSTRUCTIONS</a>
+      <a class="tab-btn is-active" href="donation-orphelinat.html">ORPHELINATS</a>
+    </nav>
+  </div>
+
+  <!-- Liste des orphelinats -->
+  <main class="donation-list" id="donationList">
+    <!-- généré dynamiquement en JS -->
+  </main>
+
+  <script src="../../js/donation-orphelinat.js"></script>
+</body>
+</html>
