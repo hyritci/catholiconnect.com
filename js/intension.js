@@ -7,6 +7,7 @@
 const DIOCESES = [
   { id: "grand-bassam", label: "Grand-Bassam" },
   { id: "abidjan", label: "Abidjan" },
+  { id: "yamoussoukro", label: "Yamoussoukro" },
 ];
 
 // ⚠️ Champ "detailLink" : lien propre à chaque paroisse.
@@ -16,13 +17,15 @@ const DIOCESES = [
 const PARISHES = {
   "grand-bassam": [
     { id: 1, name: "Notre Dame de l'Assomption", location: "Koumassi-Prodomo", detailLink: "DiocGrandBass/intension-nda/intension-nda.html" },
-    { id: 2, name: "Notre Dame de l'Assomption", location: "Koumassi-Prodomo", detailLink: "" },
-    { id: 3, name: "Notre Dame de l'Assomption", location: "Koumassi-Prodomo", detailLink: "" },
-    { id: 4, name: "Notre Dame de l'Assomption", location: "Koumassi-Prodomo", detailLink: "" },
-  ],
+    { id: 2, name: "Paroisse Saint-Joseph Artisan", location: "Koumassi-05", detailLink: "" },
+   ],
   abidjan: [
-    { id: 5, name: "Cathédrale Saint-Paul", location: "Le Plateau", detailLink: "" },
-    { id: 6, name: "Sainte Thérèse", location: "Cocody", detailLink: "DiocGrandBass/intension-nda/intension-nda.html" },
+    { id: 3, name: "Cathédrale Saint-Paul", location: "Plateau", detailLink: "" },
+    { id: 4, name: "Sainte Thérèse", location: "Marcory", detailLink: "" },
+  ],
+    yamoussoukro: [
+    { id: 5, name: "Basilique Notre-Dame de la Paix", location: "Yamoussoukro", detailLink: "" },
+    { id: 6, name: "Paroisse Saint-Jean", location: "Morofé", detailLink: "" },
   ],
 };
 
