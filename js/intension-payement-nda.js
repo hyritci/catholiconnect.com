@@ -5,7 +5,13 @@
      sur cet onglet
    - Bouton "OU SCAN ET CLICK ICI" : redirige directement vers
      la page succès (utilisé après un scan manuel avec l'appli Wave)
-
+   - Les demandes sont enregistrées dans Firestore, collection "intensions"
+ 
+   ⚠️ À COMPLÉTER TOI-MÊME :
+   - WAVE_PAYMENT_LINK : ton lien de paiement Wave
+   - assets/wave-qr-placeholder.png : remplace par l'image réelle
+     de ton QR code Wave (le visuel "Pay with Wave" complet)
+ 
    ⚠️ Comme convenu, ce système ne vérifie pas réellement que le
    paiement a été effectué : il fait confiance à l'utilisateur.
    ========================================================== */
@@ -17,43 +23,34 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Références DOM ----
   const btnQrPay = document.getElementById("btnQrPay");
   const btnScanDone = document.getElementById("btnScanDone");
-
+ 
   // ---- Récupération des données de la demande ----
   const formData = JSON.parse(localStorage.getItem("intensionForm") || "null");
-
+ 
   let docId = localStorage.getItem("intensionDocId");
   let waveClicked = false; // vrai dès que l'utilisateur a cliqué sur l'image QR
-
+ 
   /* =========================================================
-     Enregistrement / récupération de la demande dans Supabase
-     (table "intensions")
+     Enregistrement / récupération de la demande dans Firestore
      ========================================================= */
   async function saveOrGetPendingDoc() {
-    if (docId) return docId;
+    if (docId) return docId; // déjà enregistrée (ex: retour en arrière puis re-clic)
  
     try {
-      const { data, error } = await supabaseClient
-        .from("intensions")
-        .insert([
-          {
-            parish: formData?.parish || null,
-            demande: formData?.demande || "",
-            jour: formData?.jour || "",
-            heure: formData?.heure || "",
-            numero: formData?.numero || "",
-            payment_provider: "wave",
-            status: "pending",
-          },
-        ])
-        .select()
-        .single();
- 
-      if (error) throw error;
- 
-      docId = data.id;
+      const docRef = await db.collection("intentions-nda").add({
+        parish: formData?.parish || null,
+        demande: formData?.demande || "",
+        jour: formData?.jour || "",
+        heure: formData?.heure || "",
+        numero: formData?.numero || "",
+        paymentProvider: "wave",
+        status: "pending",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      docId = docRef.id;
       localStorage.setItem("intensionDocId", docId);
     } catch (error) {
-      console.error("Erreur Supabase :", error);
+      console.error("Erreur Firestore :", error);
     }
     return docId;
   }
@@ -63,25 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
  
     if (id) {
       try {
-        const { error } = await supabaseClient
-          .from("intensions")
-          .update({
-            status: "paid",
-            paid_at: new Date().toISOString(),
-          })
-          .eq("id", id);
- 
-        if (error) throw error;
+        await db.collection("intentions-nda").doc(id).update({
+          status: "paid",
+          paidAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
       } catch (error) {
-        console.error("Erreur mise à jour Supabase :", error);
+        console.error("Erreur mise à jour Firestore :", error);
       }
     }
-
+ 
     window.location.href = "../../intension-success.html";
   }
-
+ 
   saveOrGetPendingDoc();
-
+ 
   /* =========================================================
      1) CLIC SUR L'IMAGE QR : ouvre Wave, puis on attend que
      l'utilisateur revienne sur cet onglet pour aller sur "success"
@@ -90,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     waveClicked = true;
     window.open(WAVE_PAYMENT_LINK, "_blank");
   });
-
+ 
   // Détecte le retour de l'utilisateur sur cet onglet
   // (après avoir payé dans l'app Wave ou le nouvel onglet ouvert)
   document.addEventListener("visibilitychange", () => {
@@ -99,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       markAsPaidAndGoToSuccess();
     }
   });
-
+ 
   // Filet de sécurité pour les navigateurs qui déclenchent "focus"
   // plutôt que "visibilitychange" au retour sur l'onglet
   window.addEventListener("focus", () => {
@@ -108,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       markAsPaidAndGoToSuccess();
     }
   });
-
+ 
   /* =========================================================
      2) BOUTON "OU SCAN ET CLICK ICI" : va directement sur "success"
      ========================================================= */
@@ -116,3 +108,4 @@ document.addEventListener("DOMContentLoaded", () => {
     markAsPaidAndGoToSuccess();
   });
 });
+ 

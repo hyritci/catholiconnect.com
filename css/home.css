@@ -4,14 +4,15 @@
  
 .splash-screen {
   width: 100%;
-  max-width: 480px;
+  max-width: 400px;
   margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 6vh 32px 6vh;
+  padding: 2vh 32px 2vh;
+  box-sizing: border-box;
 }
  
 /* Logo centré, occupe la partie haute de l'écran */
@@ -20,31 +21,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /*padding-top: 4vh;*/
+  padding-top: 2vh;
 }
  
 .logo-img {
   width: 100%;
-  max-width: 340px;
+  max-width: 320px;
   margin: 0 auto;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
  
 /* Groupe des deux boutons en bas */
 .action-buttons {
-  margin-top: 15vh;
+  margin-top: 10vh;
   display: flex;
   flex-direction: column;
   gap: 22px;
-  padding-bottom: 4vh;
+  padding-bottom: 2vh;
 }
 /* Mention de crédit en bas de l'écran d'accueil */
 .footer-credit {
-  margin-top: 20vh;
+  margin-top: 4rem;
   text-align: center;
   color: rgba(0, 0, 0, 0.6);
   font-size: 0.95rem;
-  padding-bottom: 3vh;
+  padding-bottom: 1vh;
 }
 
 .footer-credit a {
