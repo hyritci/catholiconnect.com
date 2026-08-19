@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const projectPhoto = document.getElementById("projectPhoto");
   const projectTitle = document.getElementById("projectTitle");
-  const projectDescription = document.getElementById("projectDescription");
 
   const linkWhatsapp = document.getElementById("linkWhatsapp");
   const linkPhone = document.getElementById("linkPhone");
@@ -52,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ? `${project.title}<br />(${project.location})`
       : project.title;
 
-    projectDescription.textContent = project.description;
 
     // Lien WhatsApp : ouvre directement une conversation avec le numéro défini
     linkWhatsapp.href = `https://wa.me/${project.whatsapp}`;

@@ -27,35 +27,54 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Récupération des données de la demande ----
   const formData = JSON.parse(localStorage.getItem("intensionForm") || "null");
  
-  let docId = localStorage.getItem("intensionDocId");
+  let docId = null;
+  let pendingDocPromise = null; // verrou : une seule création de document à la fois
+  let isRedirecting = false; // verrou : une seule redirection vers "success"
   let waveClicked = false; // vrai dès que l'utilisateur a cliqué sur l'image QR
  
   /* =========================================================
      Enregistrement / récupération de la demande dans Firestore
      ========================================================= */
-  async function saveOrGetPendingDoc() {
-    if (docId) return docId; // déjà enregistrée (ex: retour en arrière puis re-clic)
+  function saveOrGetPendingDoc() {
+    if (docId) return Promise.resolve(docId);
  
-    try {
-      const docRef = await db.collection("intentions-nda").add({
-        parish: formData?.parish || null,
-        demande: formData?.demande || "",
-        jour: formData?.jour || "",
-        heure: formData?.heure || "",
-        numero: formData?.numero || "",
-        paymentProvider: "wave",
-        status: "pending",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-      docId = docRef.id;
-      localStorage.setItem("intensionDocId", docId);
-    } catch (error) {
-      console.error("Erreur Firestore :", error);
-    }
-    return docId;
+    // Si une création est déjà en cours (ex: deux événements déclenchés
+    // presque en même temps), on réutilise la MÊME promesse au lieu
+    // d'en relancer une deuxième -> évite le document en double.
+    if (pendingDocPromise) return pendingDocPromise;
+    
+ 
+    pendingDocPromise = (async () => {
+      try {
+        const docRef = await db.collection("intentions-nda").add({
+          parish: formData?.parish || null,
+          demande: formData?.demande || "",
+          jour: formData?.jour || "",
+          heure: formData?.heure || "",
+          numero: formData?.numero || "",
+          paymentProvider: "wave",
+          status: "pending",
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+        docId = docRef.id;
+        localStorage.setItem("intensionDocId", docId);
+        return docId;
+      } catch (error) {
+        console.error("Erreur Firestore :", error);
+        pendingDocPromise = null; // on autorise un nouvel essai si ça a échoué
+        return null;
+      }
+    })();
+ 
+    return pendingDocPromise;
   }
  
   async function markAsPaidAndGoToSuccess() {
+    // Empêche un double déclenchement (ex: "focus" ET "visibilitychange"
+    // qui se déclenchent tous les deux au retour sur l'onglet)
+    if (isRedirecting) return;
+    isRedirecting = true;
+ 
     const id = await saveOrGetPendingDoc();
  
     if (id) {
@@ -69,10 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
  
+    // Cette demande est terminée : on efface son identifiant pour que
+    // la PROCHAINE demande (même appareil) crée bien un nouveau document
+    localStorage.removeItem("intensionDocId");
+ 
     window.location.href = "../../intension-success.html";
   }
  
+  // On enregistre la demande dès l'arrivée sur cette page (statut "pending")
   saveOrGetPendingDoc();
+
  
   /* =========================================================
      1) CLIC SUR L'IMAGE QR : ouvre Wave, puis on attend que

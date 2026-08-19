@@ -17,7 +17,7 @@ const DIOCESES = [
 const PARISHES = {
   "grand-bassam": [
     { id: 1, name: "Notre Dame de l'Assomption", location: "Koumassi-Prodomo", detailLink: "DiocGrandBass/intension-nda/intension-nda.html" },
-    { id: 2, name: "Paroisse Saint-Joseph Artisan", location: "Koumassi-05", detailLink: "" },
+    { id: 2, name: "Saint-Joseph Artisan", location: "Koumassi-05", detailLink: "" },
    ],
   abidjan: [
     { id: 3, name: "Cathédrale Saint-Paul", location: "Plateau", detailLink: "" },
@@ -25,7 +25,7 @@ const PARISHES = {
   ],
     yamoussoukro: [
     { id: 5, name: "Basilique Notre-Dame de la Paix", location: "Yamoussoukro", detailLink: "" },
-    { id: 6, name: "Paroisse Saint-Jean", location: "Morofé", detailLink: "" },
+    { id: 6, name: "Saint-Jean", location: "Morofé", detailLink: "" },
   ],
 };
 

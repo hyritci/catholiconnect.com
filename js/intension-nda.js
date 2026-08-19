@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../../intension.html";
   });
 
+
   // ---- Redirection vers la page d'exemples ----
   btnExemples.addEventListener("click", () => {
     saveDraft(); // on garde tout ce qui a déjà été saisi avant de quitter la page
@@ -175,32 +176,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Restauration au chargement de la page
   restoreDraft();
-  
-  
-   /* =========================================================
+
+  /* =========================================================
      BOUTON "TOUT EFFACER"
      ========================================================= */
   btnClear.addEventListener("click", () => {
     demandeText.value = "";
     popupAlreadyShown = false;
- 
+
     inputJour.value = "";
     inputHeure.innerHTML = '<option value="" disabled selected>Heure...</option>';
     inputHeure.disabled = true;
- 
+
     inputNumero.value = "";
- 
+
     // On retire aussi les messages d'erreur affichés
     [demandeText, inputJour, inputHeure, inputNumero].forEach((input) => {
       input.closest(".field-wrapper").classList.remove("has-error");
     });
- 
+
     // On efface le brouillon sauvegardé pour ne pas le restaurer plus tard
     localStorage.removeItem(DRAFT_KEY);
- 
+
     demandeText.focus();
   });
-  
 
   /* =========================================================
      VALIDATION ET PASSAGE À L'ÉTAPE SUIVANTE
@@ -219,6 +218,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("intensionForm", JSON.stringify(formData));
     saveDraft(); // le brouillon reste disponible si l'utilisateur revient en arrière
+
+    // On efface l'identifiant Firestore d'une éventuelle demande précédente :
+    // sinon la page de paiement croirait à tort que CETTE nouvelle demande
+    // est déjà enregistrée, et ne créerait aucun nouveau document.
+    localStorage.removeItem("intensionDocId");
 
     window.location.href = "intension-nda-confirmation.html";
   });
