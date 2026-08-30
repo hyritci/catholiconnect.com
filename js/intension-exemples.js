@@ -8,17 +8,17 @@ const EXEMPLES = [
   {
     id: "pardon-peches",
     title: "Pardon des peches",
-    text: "Seigneur, je te confie mes fautes et je te demande pardon pour mes péchés. Accorde-moi ta miséricorde et aide-moi à cheminer vers Toi.",
+text: "[nom], demande pardon au Seigneur pour [ses, son] péchés [de...]. Qu'il lui accorde sa miséricorde par l'interception de la viergeb Marie.",
   },
   {
     id: "action-grace",
     title: "Action de grace",
-    text: "Seigneur, je te rends grâce pour tous les bienfaits reçus. Merci pour ta présence et ton amour dans ma vie et celle de mes proches.",
+    text: "[nom], rends grâce au Seigneur pour tous ses bienfaits reçus. Lui confie sa vie et celle de mes proches par l'interception de la vierge Marie.",
   },
   {
     id: "guerison",
-    title: "Guerison d'un proche",
-    text: "Seigneur, je te confie la santé de mon proche malade. Accorde-lui la guérison et donne-lui la force de traverser cette épreuve.",
+    title: "Guerison",
+    text: "[nom], confie [la, sa] santé [de mon proche malade]. Qu'il lui accorde la guérison et donne-lui la force de traverser cette épreuve par l'interception de la vierge Marie.",
   },
   {
     id: "defunts",

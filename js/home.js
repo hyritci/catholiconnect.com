@@ -1,7 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btnIntension = document.getElementById("btnIntension");
   const btnDonation = document.getElementById("btnDonation");
+  
+  
+  
+  //test mode
+  const testModeModal = document.getElementById("testModeModal");
+  const btnCloseTestMode = document.getElementById("btnCloseTestMode");
  
+    // Popup "Mode test" affiché à chaque ouverture de l'accueil
+  testModeModal.hidden = false;
+  btnCloseTestMode.addEventListener("click", () => {
+    testModeModal.hidden = true;
+  });
+  
+  
+  
   // Redirection vers la page "Intension"
   btnIntension.addEventListener("click", () => {
     window.location.href = "intensions/intension.html";
