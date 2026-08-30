@@ -13,7 +13,7 @@ text: "[nom], demande pardon au Seigneur pour [ses, son] péchés [de...]. Qu'il
   {
     id: "action-grace",
     title: "Action de grace",
-    text: "[nom], rends grâce au Seigneur pour tous ses bienfaits reçus. Lui confie sa vie et celle de mes proches par l'interception de la vierge Marie.",
+    text: "[nom], rends grâce au Seigneur pour tous ses bienfaits reçus. Lui confie sa vie et celle de ses proches par l'interception de la vierge Marie.",
   },
   {
     id: "guerison",
